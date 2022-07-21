@@ -15,7 +15,7 @@ class SongProvider extends ChangeNotifier {
 
   String? current = '';
 
-  List? playlists = [];
+  List playlists = [];
 
   List<FileSystemEntity>? _files;
   List? _songs = [];
@@ -103,9 +103,9 @@ class SongProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List? get getLists => playlists;
+  List get getLists => playlists;
   getPlaylists() {
-    playlists = playlistCache.get('playlists');
+    playlists = playlistCache.get('playlists') ?? [];
     notifyListeners();
   }
 
