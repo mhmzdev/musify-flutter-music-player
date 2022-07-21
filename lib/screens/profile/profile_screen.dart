@@ -68,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               Space.y!,
               Text(
-                'Total Playlists: ${songProvider.playlists!.length}',
+                'Total Playlists: ${songProvider.playlists.length}',
                 style: AppText.h2,
               )
             ],

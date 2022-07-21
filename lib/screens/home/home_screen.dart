@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: context
                   .watch<SongProvider>()
-                  .getLists!
+                  .getLists
                   .map(
                     (e) => _PlaylistCard(
                       playlist: e,
