@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -51,11 +50,11 @@ dependencies:
   just_audio: ^0.9.21
   file_picker: ^4.5.1
   path_provider: ^2.0.10
-  
+
   # state management
   provider: ^6.0.1
-  bloc: ^7.1.0
-  flutter_bloc: ^7.2.0
+  bloc: ^8.0.2
+  flutter_bloc: ^8.0.1
   equatable: ^2.0.3
 
   # cache
@@ -83,7 +82,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -106,17 +104,17 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-  - family: Poppins
-    fonts:
-      - asset: fonts/Poppins-Regular.ttf
-      - asset: fonts/Poppins-Medium.ttf
-        weight: 600
-      - asset: fonts/Poppins-Light.ttf
-        weight: 200
-      - asset: fonts/Poppins-Bold.ttf
-        weight: 900
-      - asset: fonts/Poppins-Italic.ttf
-      - asset: fonts/Poppins-SemiBold.ttf
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-Medium.ttf
+          weight: 600
+        - asset: fonts/Poppins-Light.ttf
+          weight: 200
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 900
+        - asset: fonts/Poppins-Italic.ttf
+        - asset: fonts/Poppins-SemiBold.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
