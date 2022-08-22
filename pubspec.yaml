@@ -53,9 +53,9 @@ dependencies:
 
   # state management
   provider: ^6.0.1
-  bloc: ^8.0.2
-  flutter_bloc: ^8.0.1
-  equatable: ^2.0.3
+  bloc: ^8.1.0
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
 
   # cache
   hive: ^2.0.4
