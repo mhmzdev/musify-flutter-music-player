@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:musify/configs/configs.dart';
 import 'package:musify/providers/song_provider.dart';
@@ -81,7 +83,17 @@ class _PlayerMiniState extends State<PlayerMini> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                log(currentIndex.toString());
+                if (currentIndex < songs.length - 1) {
+                  songProvider.stopAndPlay(songs[currentIndex + 1].songPath);
+                  setState(() {
+                    currentIndex++;
+                  });
+                } else {
+                  songProvider.stopAndPlay(songs[currentIndex].songPath);
+                }
+              },
               icon: const Icon(
                 Icons.skip_next,
               ),
