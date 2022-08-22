@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:musify/configs/configs.dart';
 import 'package:musify/providers/song_provider.dart';
 import 'package:provider/provider.dart';
-// ignore: depend_on_referenced_packages
 import 'package:path/path.dart' show basename;
 
 class PlayerMini extends StatelessWidget {
