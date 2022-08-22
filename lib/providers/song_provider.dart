@@ -66,13 +66,20 @@ class SongProvider extends ChangeNotifier {
   bool get isPlaying => audioPlayer.playerState.playing;
   bool get isStopped => stopped;
 
+  stopAndPlay(String? path) {
+    stopSong();
+    current = path;
+    audioPlayer.setFilePath(path ?? current!);
+    audioPlayer.play();
+    notifyListeners();
+  }
+
   playSong({String? path}) {
     stopped = false;
     String newPath = '';
     if (path == null) {
       var rd = Random();
       int r = rd.nextInt(songs!.length);
-
       newPath = songs![r].songPath;
     }
     current = path ?? newPath;
