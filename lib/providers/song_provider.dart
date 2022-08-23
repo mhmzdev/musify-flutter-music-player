@@ -22,9 +22,10 @@ class SongProvider extends ChangeNotifier {
 
   List? get songs => _songs;
 
-  fetch() {
+  fetch() async {
     fetchHive();
-    scanDevice();
+    await scanDevice();
+    current = getRandom();
   }
 
   fetchHive() {
@@ -82,17 +83,21 @@ class SongProvider extends ChangeNotifier {
   playSong({String? path}) {
     stopped = false;
     String newPath = '';
-    if (current.isEmpty) {
-      if (path == null) {
-        var rd = Random();
-        int r = rd.nextInt(songs!.length);
-        newPath = songs![r].songPath;
-      }
-      current = path ?? newPath;
+    if (path == null) {
+      newPath = getRandom();
     }
+
+    current = path ?? newPath;
     audioPlayer.setFilePath(path ?? newPath);
     audioPlayer.play();
     notifyListeners();
+  }
+
+  String getRandom() {
+    var rd = Random();
+    int r = rd.nextInt(songs!.length);
+    String newPath = songs![r].songPath;
+    return newPath;
   }
 
   pauseSong() {

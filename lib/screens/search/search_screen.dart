@@ -4,7 +4,6 @@ import 'package:musify/configs/configs.dart';
 import 'package:musify/providers/song_provider.dart';
 import 'package:musify/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
-// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
 class SearchScreen extends StatefulWidget {
