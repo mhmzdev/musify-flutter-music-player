@@ -48,7 +48,10 @@ class SongProvider extends ChangeNotifier {
     _files = directory.listSync(recursive: true, followLinks: false);
     for (FileSystemEntity entity in _files!) {
       String path = entity.path;
-      if (path.endsWith('.mp3')) {
+      if (path.endsWith('.m4a') ||
+          path.endsWith('.mp3') ||
+          path.endsWith('.aac') ||
+          path.endsWith('.wav')) {
         _songs!.add(
           Song(songPath: entity.path),
         );
