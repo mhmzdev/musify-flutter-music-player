@@ -24,9 +24,7 @@ class SongProvider extends ChangeNotifier {
 
   fetch() {
     fetchHive();
-    if (_songs!.isEmpty) {
-      scanDevice();
-    }
+    scanDevice();
   }
 
   fetchHive() {
@@ -46,15 +44,19 @@ class SongProvider extends ChangeNotifier {
     Directory directory = Directory('/storage/emulated/0/');
 
     _files = directory.listSync(recursive: true, followLinks: false);
-    for (FileSystemEntity entity in _files!) {
-      String path = entity.path;
-      if (path.endsWith('.m4a') ||
-          path.endsWith('.mp3') ||
-          path.endsWith('.aac') ||
-          path.endsWith('.wav')) {
-        _songs!.add(
-          Song(songPath: entity.path),
-        );
+
+    if (_songs!.isNotEmpty) {
+      _songs = [];
+      for (FileSystemEntity entity in _files!) {
+        String path = entity.path;
+        if (path.endsWith('.m4a') ||
+            path.endsWith('.mp3') ||
+            path.endsWith('.aac') ||
+            path.endsWith('.wav')) {
+          _songs!.add(
+            Song(songPath: entity.path),
+          );
+        }
       }
     }
 
