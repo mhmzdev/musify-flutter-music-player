@@ -23,7 +23,7 @@ class _PlayingNowScreenState extends State<PlayingNowScreen> {
     final songProvider = Provider.of<SongProvider>(context);
     bool alreadyLiked = songProvider.likedSongs.contains(
       Song(
-        songPath: songProvider.current!,
+        songPath: songProvider.current,
       ),
     );
 
@@ -38,7 +38,7 @@ class _PlayingNowScreenState extends State<PlayingNowScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      '${basename(songProvider.current!).substring(0, 10)}...',
+                      '${basename(songProvider.current).substring(0, 10)}...',
                       style: AppText.h1b,
                     ),
                   ),
@@ -131,14 +131,14 @@ class _PlayingNowScreenState extends State<PlayingNowScreen> {
                       if (!alreadyLiked) {
                         songProvider.liked(
                           Song(
-                            songPath: songProvider.current!,
+                            songPath: songProvider.current,
                           ),
                         );
                         CustomSnackBars.success(context, 'Added to Liked!');
                       } else {
                         songProvider.unLiked(
                           Song(
-                            songPath: songProvider.current!,
+                            songPath: songProvider.current,
                           ),
                         );
                         CustomSnackBars.failure(context, 'Removed from Liked!');

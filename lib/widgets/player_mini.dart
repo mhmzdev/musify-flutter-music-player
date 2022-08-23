@@ -49,9 +49,9 @@ class _PlayerMiniState extends State<PlayerMini> {
             Space.x1!,
             Expanded(
               child: Text(
-                songProvider.current!.isEmpty
+                songProvider.current.isEmpty
                     ? 'Now Playing'
-                    : basename(songProvider.current!),
+                    : basename(songProvider.current),
                 style: AppText.b1b,
               ),
             ),
