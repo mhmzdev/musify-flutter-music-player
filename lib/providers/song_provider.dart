@@ -13,7 +13,7 @@ class SongProvider extends ChangeNotifier {
   final songsCache = Hive.box('songs');
   final playlistCache = Hive.box('playlists');
 
-  String? current = '';
+  String current = '';
 
   List playlists = [];
 
@@ -22,11 +22,10 @@ class SongProvider extends ChangeNotifier {
 
   List? get songs => _songs;
 
-  fetch() {
+  fetch() async {
     fetchHive();
-    if (_songs!.isEmpty) {
-      scanDevice();
-    }
+    await scanDevice();
+    current = getRandom();
   }
 
   fetchHive() {
@@ -46,12 +45,19 @@ class SongProvider extends ChangeNotifier {
     Directory directory = Directory('/storage/emulated/0/');
 
     _files = directory.listSync(recursive: true, followLinks: false);
-    for (FileSystemEntity entity in _files!) {
-      String path = entity.path;
-      if (path.endsWith('.mp3')) {
-        _songs!.add(
-          Song(songPath: entity.path),
-        );
+
+    if (_songs!.isNotEmpty) {
+      _songs = [];
+      for (FileSystemEntity entity in _files!) {
+        String path = entity.path;
+        if (path.endsWith('.m4a') ||
+            path.endsWith('.mp3') ||
+            path.endsWith('.aac') ||
+            path.endsWith('.wav')) {
+          _songs!.add(
+            Song(songPath: entity.path),
+          );
+        }
       }
     }
 
@@ -66,19 +72,32 @@ class SongProvider extends ChangeNotifier {
   bool get isPlaying => audioPlayer.playerState.playing;
   bool get isStopped => stopped;
 
+  stopAndPlay(String path) {
+    stopSong();
+    current = path;
+    audioPlayer.setFilePath(path);
+    audioPlayer.play();
+    notifyListeners();
+  }
+
   playSong({String? path}) {
     stopped = false;
     String newPath = '';
     if (path == null) {
-      var rd = Random();
-      int r = rd.nextInt(songs!.length);
-
-      newPath = songs![r].songPath;
+      newPath = getRandom();
     }
+
     current = path ?? newPath;
     audioPlayer.setFilePath(path ?? newPath);
     audioPlayer.play();
     notifyListeners();
+  }
+
+  String getRandom() {
+    var rd = Random();
+    int r = rd.nextInt(songs!.length);
+    String newPath = songs![r].songPath;
+    return newPath;
   }
 
   pauseSong() {
